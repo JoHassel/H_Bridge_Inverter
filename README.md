@@ -4,7 +4,7 @@
 Basic functionality of an H-Bridge Inverter (12V DC --> 230V AC)
 
 
-## Idea:
+## Overview:
 1. Microcontroller (Raspi Pico) generates a sine PWM as a control signal
 2. Sine PWM goes into a gate driver (Bootstrap) 
 3. Bootstrap (one for each side) controls H-Bridge MOSFETs --> sine_wave AC
