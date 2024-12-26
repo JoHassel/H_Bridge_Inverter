@@ -6,8 +6,14 @@ Basic functionality of an H-Bridge Inverter (12V DC --> 230V AC)
 
 ## Idea:
 1. Microcontroller (Raspi Pico) generates a sine PWM as a control signal
-2. Sine PWM goes into a gate driver (Bootstrap, one for each side) 
-3. Bootstrap controls H-Bridge MOSFETs --> sine_wave AC
+2. Sine PWM goes into a gate driver (Bootstrap) 
+3. Bootstrap (one for each side) controls H-Bridge MOSFETs --> sine_wave AC
+
+<br>
+
+![H_Bridge_Kicad_v1](https://github.com/user-attachments/assets/f3457e81-d697-4394-af72-518d4a6639ec)
+H-Bridge
+
 
 
 ## Code:
@@ -30,6 +36,11 @@ Basic functionality of an H-Bridge Inverter (12V DC --> 230V AC)
 * source of high side MOSFET floats between V_AC (here: 12V AC) --> V_GS at the high side MOSFET must be high enough to safely switch on/off the MOSFET
 * if low side MOSFET on, Bootstrap capacitor is chraged up to V_DC (here: 12V DC, voltage drop over bootstrap diode negligible)
 * if high side MOSFET is switched on, the capacitor delivers its voltage to the control pin of the high side MOSFET
+
+
+![grafik](https://github.com/user-attachments/assets/b5cb2a37-dc20-4a75-8a3a-8719e39a107b)
+
+
 
 ### Circuit design
 * [Infineon IR2104](https://www.infineon.com/cms/de/product/power/gate-driver-ics/ir2104/) was used
@@ -86,18 +97,18 @@ $R_{G,LS} = \frac{V_{Gate}}{I_{o-}} = 44 \Omega$ --> $47 \Omega$
 * $I_{o+} >= 270mA $ from [Data Sheet Gate Driver](https://www.infineon.com/cms/de/product/power/gate-driver-ics/ir2104/)
 
 
+### Output Filter
+* second order passive lowpass filter
+* Cutoff frequency $f_g = \frac{1}{2 \pi \cdot \sqrt{LC}}$
+
 ## Performance
-Disclaimer: I know Micropython is not made for high performance applications, but rather for rapid prototyping and easy debuggin. I still wanted to see how far I can get with Micropython and compare it to C++. I am happy about improvement suggestions :)
+Disclaimer: I know Micropython is not made for high performance applications, but rather for rapid prototyping and easy debugging. I still wanted to see how far I can get with Micropython and compare it to C++. I am happy about any improvement suggestions :)
 
-| Language |	Code Version | 	f_{sin,set} in Hz | f_{sin,real} in Hz |	f_{switch,set} in kHz |
-
+| Language |	Code Version | 	$f_{sin,set}$ in Hz | $f_{sin,real}$ in Hz |	$f_{switch,set}$ in kHz |
 | ----------- | ----------- | ----------- | ----------- | ----------- | 
-
 | MicroPython	| 26/12/2024	| 50	| 50	| 5 |  
-
 | MicroPython	| 26/12/2024	| 100	| 100	| 10 |
-
-| MicroPython	| 26/12/2024	| 500	| 105	| 50 |
+| MicroPython	| 26/12/2024	| 500	| 105.3	| 50 |
 
 
 
@@ -108,3 +119,5 @@ Disclaimer: I know Micropython is not made for high performance applications, bu
 * shorten timer callback
 * Code in C++ --> compare performance to Micropython  
 * Functional programming: button on MC board to activate/deactivate inverter
+
+* (if inductive load: add external flyback diodes in parallel to MOSFETs)
