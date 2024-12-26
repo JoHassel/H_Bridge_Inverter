@@ -1,10 +1,10 @@
 # H-Bridge Inverter 
 
-## Goal: 
+## Goal
 Basic functionality of an H-Bridge Inverter (12V DC --> 230V AC)
 
 
-## Overview:
+## Overview
 1. Microcontroller (Raspi Pico) generates a sine PWM as a control signal
 2. Sine PWM goes into a gate driver (Bootstrap) 
 3. Bootstrap (one for each side) controls H-Bridge MOSFETs --> sine_wave AC
@@ -19,7 +19,7 @@ Basic functionality of an H-Bridge Inverter (12V DC --> 230V AC)
 
 <br>
 
-## Code:
+## Code
 * based on [sPWM_Basic/sPWM_Basic.ino](https://github.com/Irev-Dev/Arduino-Atmel-sPWM/blob/d9c89ceef080a3c18ce5a02e0e310f1f46b8f579/sPWM_Basic/sPWM_Basic.ino)
 
 
@@ -31,8 +31,6 @@ Basic functionality of an H-Bridge Inverter (12V DC --> 230V AC)
 
 <br>
 
-
-
 ### Output
 
  <figure>
@@ -43,7 +41,7 @@ Basic functionality of an H-Bridge Inverter (12V DC --> 230V AC)
 <br>
 
 
-## Hardware:
+## Hardware
 
 
 ### Why Bootstrap Circuit?
@@ -61,7 +59,7 @@ Basic functionality of an H-Bridge Inverter (12V DC --> 230V AC)
 <br>
 
 
-### Circuit design
+### Circuit Design
 * [Infineon IR2104](https://www.infineon.com/cms/de/product/power/gate-driver-ics/ir2104/) was used
 * Dimensioning based on [TI Application Note](https://www.ti.com/lit/an/slua887a/slua887a.pdf?ts=1735164351528&ref_url=https%253A%252F%252Fwww.google.com%252F)
 * MOSFETs: [IRFB7537](https://www.infineon.com/dgdl/Infineon-Data_Sheet_IRFS7537PBF-DS-v01_01-EN.pdf?fileId=5546d462533600a4015364c3ee2729cb)
@@ -121,7 +119,7 @@ $R_{G,LS} = \frac{V_{Gate}}{I_{o-}} = 44 \Omega$ --> $47 \Omega$
 * Cutoff frequency $f_g = \frac{1}{2 \pi \cdot \sqrt{LC}}$
 
 ## Performance
-Disclaimer: I know Micropython is not made for high performance applications, but rather for rapid prototyping and easy debugging. I still wanted to see how far I can get with Micropython and compare it to C++. I am happy about any improvement suggestions :)
+Disclaimer: I know Micropython is not made for high performance applications, but rather for rapid prototyping and easy debugging. I still wanted to see how far I can get with Micropython and compare it to C++. I am looking forward to any improvement suggestions :)
 
 | Language |	Code Version | 	$f_{sin,set}$ in Hz | $f_{sin,real}$ in Hz |	$f_{switch,set}$ in kHz |
 | ----------- | ----------- | ----------- | ----------- | ----------- | 
@@ -130,10 +128,7 @@ Disclaimer: I know Micropython is not made for high performance applications, bu
 | MicroPython	| 26/12/2024	| 500	| 105.3	| 50 |
 
 
-
-
-
-## ToDos:
+## ToDos
 * use multi threading
 * shorten timer callback
 * Code in C++ --> compare performance to Micropython  
