@@ -11,22 +11,36 @@ Basic functionality of an H-Bridge Inverter (12V DC --> 230V AC)
 
 <br>
 
-![H_Bridge_Kicad_v1](https://github.com/user-attachments/assets/f3457e81-d697-4394-af72-518d4a6639ec)
-H-Bridge
+ <figure>
+  <img src="Images/H_Bridge_Kicad.png" width=60%>
+  <figcaption>Fig.1 - Simple H-Bridge </figcaption>
+</figure> 
 
 
+<br>
 
 ## Code:
 * based on [sPWM_Basic/sPWM_Basic.ino](https://github.com/Irev-Dev/Arduino-Atmel-sPWM/blob/d9c89ceef080a3c18ce5a02e0e310f1f46b8f579/sPWM_Basic/sPWM_Basic.ino)
 
 
 ### Flowchart
-![grafik](https://github.com/user-attachments/assets/0f634039-548f-4180-8023-58856f1b5842)
+ <figure>
+  <img src="Images/Flowchart_Code.png" width=60%>
+  <figcaption>Fig.2 - Flowchart Code </figcaption>
+</figure> 
+
+<br>
 
 
 
 ### Output
-![PIC_9](https://github.com/user-attachments/assets/ee9a03ed-56e9-471d-a665-c2d0a5871e6e)
+
+ <figure>
+  <img src="Images/Sine_PWM_Oscilloscope.png" width=60%>
+  <figcaption>Fig.3 - Sine PWM Output </figcaption>
+</figure> 
+
+<br>
 
 
 ## Hardware:
@@ -37,9 +51,14 @@ H-Bridge
 * if low side MOSFET on, Bootstrap capacitor is chraged up to V_DC (here: 12V DC, voltage drop over bootstrap diode negligible)
 * if high side MOSFET is switched on, the capacitor delivers its voltage to the control pin of the high side MOSFET
 
+<br>
 
-![grafik](https://github.com/user-attachments/assets/b5cb2a37-dc20-4a75-8a3a-8719e39a107b)
+ <figure>
+  <img src="Images/Bootstrap_Circuit.png" width=60%>
+  <figcaption>Fig.4 - Bootstrap CIrcuit </figcaption>
+</figure> 
 
+<br>
 
 
 ### Circuit design
