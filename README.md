@@ -129,7 +129,6 @@ Disclaimer: I know Micropython is not made for high performance applications, bu
 
 
 ## ToDos
-* use multi threading
 * shorten timer callback
 * Code in C++ --> compare performance to Micropython  
 * Functional programming: button on MC board to activate/deactivate inverter
