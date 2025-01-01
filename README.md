@@ -116,8 +116,9 @@ $R_{G,LS} = \frac{V_{Gate}}{I_{o-}} = 44 \Omega$ --> $47 \Omega$
 
 ### Output Filter
 * second order passive lowpass filter
-* Cutoff frequency $f_g = \frac{1}{2 \pi \cdot \sqrt{LC}}$
-* $f_g$ should be as low as possible because $f_{sin} = 50Hz$ and $f_{switch} = 10kHz$ are  
+* Cutoff frequency $f_g = \frac{1}{2 \pi \cdot \sqrt{LC}}$ (see [ElectronicBase.net](https://electronicbase.net/de/tiefpass-berechnen/))
+* Cap chosen based on availabilty in store: $C_{Filter} = 10 \muF$ (use film cap, not a polarized one)
+* $L_{Filter} = 100mH$ --> $f_g = 159.2Hz$
 
 ## Performance
 Disclaimer: I know Micropython is not made for high performance applications, but rather for rapid prototyping and easy debugging. I still wanted to see how far I can get with Micropython and compare it to C. 
