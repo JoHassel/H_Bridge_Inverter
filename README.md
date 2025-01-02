@@ -121,7 +121,7 @@ $R_{G,LS} = \frac{V_{Gate}}{I_{o-}} = 44 \Omega$ --> $47 \Omega$
 * $L_{Filter} = 100mH$ --> $f_g = 159.2Hz$
 
 ## Results
-The higher the resolution of the sine PWM (pwm_periods & scaler, see code) the clearer the sine wave output gets. Since the performance of the C code is better than the Micropython code (see below), the sine wave from the C code has less ripples. 
+The higher the resolution of the sine PWM (pwm_periods & scaler, see code) the clearer the sine wave output gets. Since the performance of the C code is better than the Micropython code (see below), the sine wave from the C code has less ripples. The amplitude is relatively low at the moment since there is no output voltage regulation yet. 
 
  <figure>
   <img src="Images/Micropython.png" width=60%>
@@ -155,5 +155,6 @@ I am looking forward to any improvement suggestions :)
 
 
 ## ToDos
-* shorten timer callback (call for improvement proposals)
+* shorten timer callback 
+* add output voltage regulation
 * (if inductive load: add external flyback diodes in parallel to MOSFETs)
