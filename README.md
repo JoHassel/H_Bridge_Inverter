@@ -127,6 +127,8 @@ $R_{G,LS} = \frac{V_{Gate}}{I_{o-}} = 44 \Omega$ --> $47 \Omega$
 </figure> 
 
 <br>
+<br>
+<br>
 
 <figure>
   <img src="Images/C.png" width=60%>
