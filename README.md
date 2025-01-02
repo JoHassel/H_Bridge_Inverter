@@ -117,10 +117,12 @@ $R_{G,LS} = \frac{V_{Gate}}{I_{o-}} = 44 \Omega$ --> $47 \Omega$
 ### Output Filter
 * second order passive lowpass filter (LC filter)
 * Cutoff frequency $f_g = \frac{1}{2 \pi \cdot \sqrt{LC}}$ (see [ElectronicBase.net](https://electronicbase.net/de/tiefpass-berechnen/))
-* Cap chosen based on availabilty in store: $C_{Filter} = 10 \muF$ (use film cap, not a polarized one)
+* Cap chosen based on availabilty in store: $C_{Filter} = 10 \mu F$ (use film cap, not a polarized one)
 * $L_{Filter} = 100mH$ --> $f_g = 159.2Hz$
 
 ## Results
+The higher the resolution of the sine PWM (pwm_periods & scaler, see code) the clearer the sine wave output gets. Since the performance of the C code is better than the Micropython code (see below), the sine wave from the C code has less ripples. 
+
  <figure>
   <img src="Images/Micropython.png" width=60%>
   <figcaption>Fig.5 -Resulting Sine Wave with Micropython Code </figcaption>
