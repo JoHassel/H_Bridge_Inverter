@@ -66,7 +66,7 @@ Basic functionality of an H-Bridge Inverter (12V DC --> 230V AC)
 
 
 #### Bootstrap Capacitor
-$C_{boot} >= \frac{Q_{total}}{\Delta V_{HB}} = XXX$ --> [22uF 50V Elko](https://cdn-reichelt.de/documents/datenblatt/B300/A-FR_ENG_TDS.pdf)
+$C_{boot} >= \frac{Q_{total}}{\Delta V_{HB}} = 183.75nF$  (Rule of thumb: 10 times gate capacitance leads to $190nF$) --> $C_{boot} = 200 nF$ 
 
 $Q_{total} = Q_G + I_{HBS} \cdot \frac{D_{max}}{f_{sw}} + \frac{I_{HB}}{f_{sw}} $
 
@@ -82,13 +82,13 @@ $Q_{total} = Q_G + I_{HBS} \cdot \frac{D_{max}}{f_{sw}} + \frac{I_{HB}}{f_{sw}} 
 
 
 
-$\Delta V_{HB} = V_ {DD} − V_ {DH} − V_ {HBL} = 2V $
+$\Delta V_{HB} = V_ {DD} − V_ {DH} − V_ {HBL} = 1.2V $
 
 * $V_ {DD} = V_{DC} = 12V$
 
 * $V_ {DH} = 1V $ from [Data Sheet 1N4148](https://www.vishay.com/docs/81857/1n4148.pdf)
 
-* $V_{HBL} = 9V$ from [Data Sheet Gate Driver](https://www.infineon.com/cms/de/product/power/gate-driver-ics/ir2104/)
+* $V_{HBL} = 9.8V$ from [Data Sheet Gate Driver](https://www.infineon.com/cms/de/product/power/gate-driver-ics/ir2104/)
 
 
 
@@ -116,21 +116,25 @@ $R_{G,LS} = \frac{V_{Gate}}{I_{o-}} = 44 \Omega$ --> $47 \Omega$
 
 ### Output Filter
 * second order passive lowpass filter
-* Cutoff frequency $f_g = \frac{1}{2 \pi \cdot \sqrt{LC}}$
+* Cutoff frequency $f_g = \frac{1}{2 \pi \cdot \sqrt{LC}}$ (see [ElectronicBase.net](https://electronicbase.net/de/tiefpass-berechnen/))
+* Cap chosen based on availabilty in store: $C_{Filter} = 10 \muF$ (use film cap, not a polarized one)
+* $L_{Filter} = 100mH$ --> $f_g = 159.2Hz$
 
 ## Performance
-Disclaimer: I know Micropython is not made for high performance applications, but rather for rapid prototyping and easy debugging. I still wanted to see how far I can get with Micropython and compare it to C++. I am looking forward to any improvement suggestions :)
+Disclaimer: I know Micropython is not made for high performance applications, but rather for rapid prototyping and easy debugging. I still wanted to see how far I can get with Micropython and compare it to C. 
+Also the C code can become much faster by shorten the timer callback, using bit operations and more. 
+I am looking forward to any improvement suggestions :)
 
-| Language |	Code Version | 	$f_{sin,set}$ in Hz | $f_{sin,real}$ in Hz |	$f_{switch,set}$ in kHz |
+| Language |	Code Version | 	$f_{sin,set}$ in Hz | $f_{sin,real}$ in Hz |	$f_{switch,real}$ in kHz |
 | ----------- | ----------- | ----------- | ----------- | ----------- | 
 | MicroPython	| 26/12/2024	| 50	| 50	| 5 |  
 | MicroPython	| 26/12/2024	| 100	| 100	| 10 |
-| MicroPython	| 26/12/2024	| 500	| 105.3	| 50 |
+| MicroPython	| 26/12/2024	| 500	| 105.3	| 10.5 |
+| C	| 02/01/2025	| 50	| 50	| 5 |
+| C	| 02/01/2025	| 100	| 100	| 10 |
+| C	| 02/01/2025	| 500	| 444.4	| 44.4 |
 
 
 ## ToDos
-* shorten timer callback
-* Code in C++ --> compare performance to Micropython  
-* Functional programming: button on MC board to activate/deactivate inverter
-
+* shorten timer callback (call for improvement proposals)
 * (if inductive load: add external flyback diodes in parallel to MOSFETs)
