@@ -10,22 +10,20 @@
 #define g1 16          // GPIO for Gate 1
 #define g2 17          // GPIO for Gate 2
 #define f_sine 50      // Frequency of the generated sine wave
-#define pwm_periods 10 // PWM Periods per half-wave
-#define scaler 10      // ratio between f_pwm and f_switch
+#define pwm_periods 20 // PWM Periods per half-wave
+#define scaler 20      // ratio between f_pwm and f_switch
 
 // Global Variables:
-const int f_pwm = pwm_periods * f_sine;         // PWM frequency
-const int f_switch = scaler * f_pwm;            // Switching frequency
-const int T_switch = (int)(1000000 / f_switch); // Timer period in us
-int cycles = 0;                                 // iterated on every timer callback
-const int fin = scaler * pwm_periods * 2;       // cycle number at the end of a sine wave
-int lut[pwm_periods];                           // Look-up table for sine PWM
+const int f_switch = pwm_periods * f_sine * scaler * 2; // Switching frequency
+const int T_switch = (int)(1000000 / f_switch);         // Timer period in us
+int cycles = 0;                                         // iterated on every timer callback
+const int fin = scaler * pwm_periods * 2;               // cycle number at the end of a sine wave
+int lut[pwm_periods];                                   // Look-up table for sine PWM
 
 // Timer Callback
 bool repeating_timer_callback(__unused struct repeating_timer *t)
 {
-    int num = cycles % scaler;              // cycle number within a PWM period
-    int i = (int)((cycles % 100) / scaler); // number of PWM period
+    int num = cycles % scaler; // cycle number within a PWM period
 
     if (num == 0)
     {
@@ -38,6 +36,7 @@ bool repeating_timer_callback(__unused struct repeating_timer *t)
         // printf("Gate 1&4 HIGH, Gate 2&3 LOW\n");
     }
 
+    int i = (int)(cycles / (scaler * 2)); // number of PWM period
     if (num == (lut[i]))
     {
         gpio_put(g2, HI);
