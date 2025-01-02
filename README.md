@@ -115,7 +115,7 @@ $R_{G,LS} = \frac{V_{Gate}}{I_{o-}} = 44 \Omega$ --> $47 \Omega$
 
 
 ### Output Filter
-* second order passive lowpass filter
+* second order passive lowpass filter (LC filter)
 * Cutoff frequency $f_g = \frac{1}{2 \pi \cdot \sqrt{LC}}$ (see [ElectronicBase.net](https://electronicbase.net/de/tiefpass-berechnen/))
 * Cap chosen based on availabilty in store: $C_{Filter} = 10 \muF$ (use film cap, not a polarized one)
 * $L_{Filter} = 100mH$ --> $f_g = 159.2Hz$
