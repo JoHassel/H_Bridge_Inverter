@@ -120,6 +120,21 @@ $R_{G,LS} = \frac{V_{Gate}}{I_{o-}} = 44 \Omega$ --> $47 \Omega$
 * Cap chosen based on availabilty in store: $C_{Filter} = 10 \muF$ (use film cap, not a polarized one)
 * $L_{Filter} = 100mH$ --> $f_g = 159.2Hz$
 
+## Results
+ <figure>
+  <img src="Images/Micropython.png" width=60%>
+  <figcaption>Fig.5 -Resulting Sine Wave with Micropython Code </figcaption>
+</figure> 
+
+<br>
+
+<figure>
+  <img src="Images/C.png" width=60%>
+  <figcaption>Fig.6 -Resulting Sine Wave with C Code </figcaption>
+</figure> 
+<br>
+
+
 ## Performance
 Disclaimer: I know Micropython is not made for high performance applications, but rather for rapid prototyping and easy debugging. I still wanted to see how far I can get with Micropython and compare it to C. 
 Also the C code can become much faster by shorten the timer callback, using bit operations and more. 
